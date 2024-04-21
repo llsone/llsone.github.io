@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "main-app": {
+    "main": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -11,14 +11,12 @@
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:application",
+          "builder": "@angular-devkit/build-angular:browser-esbuild",
           "options": {
-            "outputPath": "dist/main-app",
+            "outputPath": "dist/main",
             "index": "src/index.html",
-            "browser": "src/main.ts",
-            "polyfills": [
-              "zone.js"
-            ],
+            "main": "src/main.ts",
+            "polyfills":"zone.js",
             "tsConfig": "tsconfig.app.json",
             "assets": [
               "src/favicon.ico",
@@ -57,10 +55,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "main-app:build:production"
+              "buildTarget": "main:build:production"
             },
             "development": {
-              "buildTarget": "main-app:build:development"
+              "buildTarget": "main:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -68,7 +66,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "buildTarget": "main-app:build"
+            "buildTarget": "main:build"
           }
         },
         "test": {
